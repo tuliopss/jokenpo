@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.game {
+  /* height: 100%;
+  width: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.gameSection {
+  /* margin-top: 50%; */
+  margin: 1.5em;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.gameSection .choicesContainer {
+  margin-top: 3em;
+  display: flex;
+
+  /* flex-direction: row; */
+}
+
+.userChoice {
+  width: 200px;
+  height: 200px;
+  margin-right: 1em;
+
+  /* background-color: yellowgreen; */
+  border: 1px solid #000;
+}
+.cpuChoice {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+}
+
+.choiceImage {
+  width: 50%;
+  height: 50%;
+  margin-top: 2.3em;
+
+  text-align: center;
+}
+.userActions {
+  display: flex;
+  flex-direction: column;
+}
+.btnChoice {
+  width: 40px;
+  height: 40px;
+  /* background-color: #000; */
+}
