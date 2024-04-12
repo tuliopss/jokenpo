@@ -91,21 +91,29 @@ const Game = () => {
   // };
 
   const checkWin = (user, cpu) => {
-    const wins = [
+    const matchs = [
       { user: "Rock", cpu: "Paper", winner: "Paper" },
       { user: "Rock", cpu: "Scissors", winner: "Rock" },
+      { user: "Rock", cpu: "Rock", winner: "Draw" },
       { user: "Paper", cpu: "Rock", winner: "Paper" },
+      { user: "Paper", cpu: "Scissors", winner: "Scissors" },
+      { user: "Paper", cpu: "Paper", winner: "Draw" },
       { user: "Scissors", cpu: "Paper", winner: "Scissors" },
+      { user: "Scissors", cpu: "Rock", winner: "Rock" },
+      { user: "Scissors", cpu: "Scissors", winner: "Draw" },
     ];
 
-    for (const prop in wins) {
-      // console.log(wins[prop]);
-      if (user == wins[prop].user && cpu == wins[prop].cpu) {
-        console.log(wins[prop]);
-        if (wins[prop].winner == cpu) {
+    for (const prop in matchs) {
+      if (user == matchs[prop].user && cpu == matchs[prop].cpu) {
+        console.log(matchs[prop]);
+        if (matchs[prop].winner == cpu) {
           console.log("cpu ganhou");
+          setScore((actualScore) => (actualScore -= 40));
+        } else if (user == cpu) {
+          console.log("draw");
         } else {
           console.log("user ganhou");
+          setScore((actualScore) => (actualScore += 100));
         }
       }
     }
