@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import styles from "./Game.module.css";
 const Game = () => {
   const [score, setScore] = useState(0);
-  const [imageRock] = useState("src/assets/Rock.png");
-  const [imageScissors] = useState("src/assets/Scissors.png");
-  const [imagePaper] = useState("./src/assets/Paper.png");
+  const choicesPossibles = ["Rock", "Scissors", "Paper"];
+  const [imageRock] = useState("Rock.png");
+  const [imageScissors] = useState("Scissors.png");
+  const [imagePaper] = useState("Paper.png");
   const [cpuChoice, setCpuChoice] = useState("");
   const [userChoice, setUserChoice] = useState("");
   const [userImage, setUserImage] = useState("");
   const [cpuImage, setCpuImage] = useState("");
   const [match, setMatch] = useState({});
   const [winner, setWinner] = useState("");
-  const [visibilityImage, setVisibilityImage] = useState(false);
-  const [disableBtn, setDisableBtn] = useState(false);
 
   const possibleMatchs = [
     { user: "Rock", cpu: "Paper", winner: "Paper" },
@@ -25,25 +24,15 @@ const Game = () => {
     { user: "Scissors", cpu: "Rock", winner: "Rock" },
     { user: "Scissors", cpu: "Scissors", winner: "Draw" },
   ];
-  const choicesPossibles = ["Rock", "Scissors", "Paper"];
 
   useEffect(() => {
     CheckResult(userChoice, cpuChoice);
-
-    setTimeout(() => {
-      clearChoices();
-      setDisableBtn(true);
-    }, 3000);
-
-    // clearChoices();
-    console.log("user", disableBtn);
   }, [match]);
 
   const handlePlay = (e) => {
-    setDisableBtn(false);
     const value = e.target.id;
     const index = choicesPossibles.indexOf(value);
-    console.log(e.target);
+
     userPlay(value, index);
     cpuPlay();
     setMatch({ user: userChoice, cpu: cpuChoice });
@@ -83,22 +72,20 @@ const Game = () => {
 
   const changeUserImage = (index) => {
     changeImage(index, setUserImage);
-    setVisibilityImage(true);
   };
 
   const changeCpuImage = (index) => {
     changeImage(index, setCpuImage);
-    setVisibilityImage(true);
   };
 
   const checkWin = (user, cpu) => {
     for (const m in possibleMatchs) {
       if (user == possibleMatchs[m].user && cpu == possibleMatchs[m].cpu) {
-        if (possibleMatchs[m].winner == user) {
+        if ((possibleMatchs[m].winner = user)) {
           setWinner("User");
           setScore((actualScore) => (actualScore += 50));
-        } else if (possibleMatchs[m].winner == cpu) {
-          setWinner(cpu);
+        } else if ((possibleMatchs[m].winner = cpu)) {
+          setWinner("CPU");
           setScore((actualScore) => (actualScore -= 50));
         }
       }
@@ -118,12 +105,6 @@ const Game = () => {
   const CheckResult = (user, cpu) => {
     checkWin(user, cpu);
     checkDraw(user, cpu);
-    console.log(winner);
-  };
-
-  const clearChoices = () => {
-    setVisibilityImage(false);
-    setWinner("");
   };
 
   return (
@@ -136,48 +117,49 @@ const Game = () => {
         <div className={styles.choicesContainer}>
           <div className={styles.userActions}>
             <button
-              disabled={!disableBtn}
               className={styles.btnChoice}
               value={choicesPossibles[0]}
               onClick={handlePlay}>
-              <img id='Rock' src={imageRock} alt='Rock' />
+              <img id='Rock' src={`src/assets/${imageRock}`} alt='Rock' />
             </button>
             <button
-              disabled={!disableBtn}
               className={styles.btnChoice}
               value={choicesPossibles[1]}
               onClick={handlePlay}>
-              <img id='Scissors' src={imageScissors} alt='Scissors' />
+              <img
+                id='Scissors'
+                src={`src/assets/${imageScissors}`}
+                alt='Scissors'
+              />
             </button>
 
             <button
-              disabled={!disableBtn}
               className={styles.btnChoice}
               value={choicesPossibles[2]}
               onClick={handlePlay}>
-              <img id='Paper' src={imagePaper} alt='Paper' />
+              <img id='Paper' src={`src/assets/${imagePaper}`} alt='Paper' />
             </button>
           </div>
 
           <div className={styles.userChoice}>
             <div className='image'></div>
 
-            {visibilityImage ? (
+            {userChoice ? (
               <img
-                src={userImage}
-                // alt='rock'
+                src={`src/assets/${userImage}`}
+                alt='rock'
                 className={styles.choiceImage}
               />
             ) : (
-              <span>Joookeeenpo!</span>
+              <p className={styles.jokenpoTxtChoice}>Joookeeenpo!</p>
             )}
           </div>
 
           <div className={styles.cpuChoice}>
-            {visibilityImage ? (
+            {cpuChoice ? (
               <img
-                src={cpuImage}
-                // alt='rock'
+                src={`src/assets/${cpuImage}`}
+                alt='rock'
                 className={styles.choiceImage}
               />
             ) : (
@@ -193,9 +175,7 @@ const Game = () => {
           </button> */}
         </div>
 
-        {winner == "" ? (
-          <></>
-        ) : winner == "User" ? (
+        {winner == "user" ? (
           <p id={styles.userWinText}>USER GANHOU</p>
         ) : winner == "Draw" ? (
           <p id={styles.drawText}>Draw</p>

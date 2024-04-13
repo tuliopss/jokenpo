@@ -33,7 +33,12 @@ body {
   /* flex-direction: row; */
 }
 
-.userChoice {
+.userChoice,
+.cpuChoice {
+  display: flex;
+  flex-direction: column; /* Organiza os itens em coluna */
+  align-items: center; /* Alinha os itens no centro horizontal */
+  justify-content: center;
   width: 200px;
   height: 200px;
   margin-right: 1em;
@@ -41,25 +46,45 @@ body {
   /* background-color: yellowgreen; */
   border: 1px solid #000;
 }
-.cpuChoice {
-  width: 200px;
-  height: 200px;
-  border: 1px solid #000;
-}
 
 .choiceImage {
   width: 50%;
   height: 50%;
-  margin-top: 2.3em;
-
-  text-align: center;
+  /* margin-top: em; */
 }
 .userActions {
+  /* background-color: #000; */
+
+  margin-right: 1.5em;
   display: flex;
+  height: 100%;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 .btnChoice {
   width: 40px;
-  height: 40px;
+  height: 45px;
+  margin-bottom: 1em;
+  /* background-color: #000;   */
+}
+.btnChoice img {
+  width: 40px;
+  height: 100%;
+  border: 3px solid #000;
+  /* margin-bottom: 1em; */
   /* background-color: #000; */
 }
+
+#userWinText {
+  color: #008000;
+}
+
+#cpuWinText {
+  color: #f01000;
+}
+
+/* .jokenpoTxtChoice {
+  text-align: center;
+} */
