@@ -169,7 +169,9 @@ const Game = () => {
                 className={styles.choiceImage}
               />
             ) : (
-              <span>Joookeeenpo!</span>
+              <span>
+                <strong>Joookeeenpo!</strong>
+              </span>
             )}
           </div>
 
@@ -181,7 +183,9 @@ const Game = () => {
                 className={styles.choiceImage}
               />
             ) : (
-              <p>Joookeeenpo!</p>
+              <span>
+                <strong>Joookeeenpo!</strong>
+              </span>
             )}
           </div>
 
@@ -196,11 +200,17 @@ const Game = () => {
         {winner == "" ? (
           <></>
         ) : winner == "User" ? (
-          <p id={styles.userWinText}>USER GANHOU</p>
+          <p id={styles.userWinText}>
+            <strong>USER GANHOU</strong>
+          </p>
         ) : winner == "Draw" ? (
-          <p id={styles.drawText}>Draw</p>
+          <p id={styles.drawText}>
+            <strong>Draw</strong>
+          </p>
         ) : (
-          <p id={styles.cpuWinText}>CPU GANHOU</p>
+          <p id={styles.cpuWinText}>
+            <strong>CPU GANHOU</strong>
+          </p>
         )}
       </main>
     </div>
